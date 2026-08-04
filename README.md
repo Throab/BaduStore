@@ -53,12 +53,38 @@ BaduStore
 git clone https://github.com/Throab/BaduStore.git
 ```
 
+## Database Configuration
+
+1. Update the SQL Server connection string:
+
+```json
+{
+  "ConnectionStrings": {
+    "ConnectionString": "Server=SERVER;Database=DATABASE;User Id=sa;Password=YourPassword;TrustServerCertificate=True;"
+  }
+}
+```
+
+2. Execute the database script:
+
+```
+Script.sql
+```
+
 ### Backend
 
 ```bash
 cd Service
 dotnet restore
 dotnet run
+```
+
+### Frontend
+
+```bash
+cd App
+npm install
+ng serve
 ```
 
 ### Redis

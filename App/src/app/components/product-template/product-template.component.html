@@ -1,0 +1,76 @@
+<div *ngIf="product && type == 'vertical'" class="product-item">
+  <div class="product-thumb">
+    <a routerLink="/san-pham/{{ product.alias }}">
+      <img [src]="product.thumbURL" />
+    </a>
+    <div class="box-label">
+      <div *ngIf="product.isHot" class="label-product label_new">
+        <span>Bán chạy</span>
+      </div>
+    </div>
+    <div class="action-links">
+      <a><i class="icon-isWishlist lnr lnr-heart"></i></a>
+      <a title="Compare"><i class="lnr lnr-sync"></i></a>
+    </div>
+  </div>
+  <div class="product-caption">
+    <div class="product-name">
+      <h3>
+        <a [title]="product.name" routerLink="/san-pham/{{ product.alias }}">{{
+          product.name
+        }}</a>
+      </h3>
+    </div>
+
+    <div class="price-box">
+      <span class="regular-price"
+        >{{ product.price | number: "1.0-0" }} VNĐ</span
+      >
+    </div>
+    <button class="btn-cart" type="button" (click)="AddToCart()">
+      Thêm vào giỏ
+    </button>
+  </div>
+</div>
+
+<div class="sinrato-list-item" *ngIf="product && type == 'horizontal'">
+  <div class="d-md-flex" style="flex: 1">
+    <div class="sinrato-thumb w-100" style="flex: 1">
+      <a>
+        <img [src]="getThumb()" alt="" />
+      </a>
+      <div class="box-label">
+        <div *ngIf="product.isHot" class="label-product label_new">
+          <span>Bán chạy</span>
+        </div>
+      </div>
+    </div>
+    <div class="sinrato-list-item-content" style="flex: 3">
+      <div class="sinrato-product-name">
+        <h4>
+          <a>{{ product.name }}</a>
+        </h4>
+      </div>
+      <div
+        class="sinrato-product-des"
+        style="flex: 1"
+        [innerHTML]="product.description"
+      ></div>
+    </div>
+  </div>
+
+  <div class="sinrato-box-action" style="flex: unset">
+    <div class="price-box text-center">
+      <span class="regular-price"
+        >{{ product.price | number: "1.0-0" }} VNĐ</span
+      >
+    </div>
+    <button class="btn-cart" type="button" (click)="AddToCart()">
+      Thêm vào giỏ
+    </button>
+    <div class="action-links sinrat-list-icon gap-2 d-flex">
+      <a title="Wishlist"><i class="icon-isWishlist lnr lnr-heart"></i></a>
+      <a title="Compare"><i class="lnr lnr-sync"></i></a>
+    </div>
+  </div>
+</div>

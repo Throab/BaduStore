@@ -1,0 +1,82 @@
+<div class="mb-4 container-fluid pt-35">
+  <div class="box-auth box-auth-client">
+    <div>
+      <h4>Đăng nhập</h4>
+    </div>
+    <form
+      (ngSubmit)="onSubmit()"
+      [formGroup]="formData"
+      class="login-form"
+      nz-form
+    >
+      <div class="mb-4">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Email không hợp lệ !">
+            <nz-input-group nzPrefixIcon="mail" nzSize="large">
+              <input
+                formControlName="email"
+                nz-input
+                placeholder="Email"
+                type="text"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="mg-b">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Không được để trống!">
+            <nz-input-group
+              [nzSuffix]="iconPassword"
+              nzPrefixIcon="lock"
+              nzSize="large"
+            >
+              <input
+                [type]="isShowPassword ? 'text' : 'password'"
+                formControlName="password"
+                nz-input
+                placeholder="Mật khẩu"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <ng-template #iconPassword>
+          <nz-icon
+            (click)="isShowPassword = !isShowPassword"
+            [nzType]="isShowPassword ? 'eye-invisible' : 'eye'"
+            nzTheme="outline"
+            style="cursor: pointer"
+          />
+        </ng-template>
+      </div>
+      <div>
+        <div class="login-form-margin px-3" nz-row>
+          <div [nzSpan]="12" nz-col>
+            <label formControlName="remember" nz-checkbox>
+              <span>Nhớ đăng nhập</span>
+            </label>
+          </div>
+          <div [nzSpan]="12" nz-col>
+            <a class="login-form-forgot" routerLink="/quen-mat-khau"
+              >Quên mật khẩu</a
+            >
+          </div>
+        </div>
+        <nz-flex [nzVertical]="true" class="mt-2" nzAlign="center">
+          <button class="btn btn-secondary mb-4" type="submit">
+            Đăng nhập
+          </button>
+          <!-- <button nz-button nzType="default" class="google-btn" type="button">
+            <img src="assets/img/logo/logo-gg.webp" alt="Google" />
+            <span>Đăng nhập với Google</span>
+          </button> -->
+          <div id="googleButton"></div>
+          <span
+            >Bạn chưa có tài khoản? <a routerLink="/dang-ky">Đăng ký</a></span
+          >
+        </nz-flex>
+      </div>
+    </form>
+  </div>
+</div>

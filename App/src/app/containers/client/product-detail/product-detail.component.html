@@ -1,0 +1,189 @@
+<!-- breadcrumb area start -->
+<div class="breadcrumb-area">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="breadcrumb-wrap">
+          <nav aria-label="breadcrumb">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <a routerLink="/danh-sach-san-pham">Sản phẩm</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                {{ product.name }}
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- breadcrumb area end -->
+<div *ngIf="product">
+  <!-- product details wrapper start -->
+  <div class="product-details-main-wrapper pb-50">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="product-large-slider mb-20">
+            <div *ngFor="let item of product.images" class="pro-large-img">
+              <img [src]="item.url" alt="" />
+              <div class="img-view">
+                <a class="img-popup" href="{{ item.url }}"
+                  ><i class="fa fa-search"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="pro-nav">
+            <div *ngFor="let item of product.images" class="pro-nav-thumb">
+              <img alt="" src="{{ item.url }}" />
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="product-details-inner">
+            <div class="product-details-contentt">
+              <div class="pro-details-name mb-10">
+                <h3>{{ product.name }}</h3>
+              </div>
+              <div class="price-box mb-15">
+                <span class="regular-price"
+                  ><span class="special-price"
+                    >{{ product.price | number: "1.0-0" }} VNĐ</span
+                  ></span
+                >
+              </div>
+              <div
+                [innerHTML]="product.description"
+                class="product-detail-sort-des pb-20"
+              ></div>
+
+              <div class="pro-quantity-box mb-30">
+                <div class="qty-boxx">
+                  <label>Số lượng :</label>
+                  <input [value]="product.quantity" type="number" readonly />
+                  <button class="btn-cart lg-btn">Thêm vào giỏ hàng</button>
+                </div>
+              </div>
+
+              <div class="pro-social-sharing">
+                <label>share :</label>
+                <ul>
+                  <li class="list-inline-item">
+                    <a
+                      class="bg-facebook"
+                      href="#"
+                      target="_blank"
+                      title="Facebook"
+                    >
+                      <i class="fa fa-facebook"></i>
+                      <span>like 0</span>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a
+                      class="bg-twitter"
+                      href="#"
+                      target="_blank"
+                      title="Twitter"
+                    >
+                      <i class="fa fa-twitter"></i>
+                      <span>tweet</span>
+                    </a>
+                  </li>
+                  <li class="list-inline-item" target="_blank">
+                    <a class="bg-google" title="Google Plus">
+                      <i class="fa fa-google-plus"></i>
+                      <span>google +</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- product details wrapper end -->
+
+  <!-- product details reviews start -->
+  <div class="product-details-reviews pb-30">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="product-info mt-half">
+            <ul
+              class="nav nav-pills justify-content-center"
+              id="pills-tab"
+              role="tablist"
+            >
+              <li class="nav-item">
+                <button
+                  aria-controls="tab_description"
+                  aria-selected="true"
+                  class="nav-link active"
+                  data-bs-target="#tab_description"
+                  data-bs-toggle="pill"
+                  id="nav_desctiption"
+                  role="tab"
+                  type="button"
+                >
+                  Thông số kỹ thuật
+                </button>
+              </li>
+              <li class="nav-item">
+                <button
+                  aria-controls="tab_review"
+                  aria-selected="false"
+                  class="nav-link"
+                  data-bs-target="#tab_review"
+                  data-bs-toggle="pill"
+                  id="nav_review"
+                  role="tab"
+                  type="button"
+                >
+                  Đánh giá
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div
+                aria-labelledby="nav_desctiption"
+                class="tab-pane fade show active"
+                id="tab_description"
+                role="tabpanel"
+              >
+                <div class="product-specs">
+                  <h3>Thông số kỹ thuật</h3>
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <td class="spec-title">Tên sản phẩm</td>
+                        <td class="spec-value">{{ product.name }}</td>
+                      </tr>
+                      <tr>
+                        <td class="spec-title">Thương hiệu</td>
+                        <td class="spec-value">{{ product.brandName }}</td>
+                      </tr>
+                      <ng-container *ngFor="let item of product.attributes">
+                        <tr>
+                          <td class="spec-title">{{ item.attributeName }}</td>
+                          <td class="spec-value">{{ item.value }}</td>
+                        </tr>
+                      </ng-container>
+                      <!-- Thêm các thông số khác tùy theo sản phẩm -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

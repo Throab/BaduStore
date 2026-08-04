@@ -1,0 +1,121 @@
+<div class="mb-4 container-fluid pt-35">
+  <div class="box-auth box-auth-client">
+    <div>
+      <h4>Đăng ký tài khoản</h4>
+    </div>
+    <form
+      (ngSubmit)="onSubmit()"
+      [formGroup]="formData"
+      class="login-form"
+      nz-form
+    >
+      <div class="mb-4">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Email không hợp lệ !">
+            <nz-input-group nzPrefixIcon="mail" nzSize="large">
+              <input
+                formControlName="email"
+                nz-input
+                placeholder="Email"
+                type="text"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="mb-4">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Không được để trống!">
+            <nz-input-group
+              [nzSuffix]="iconPassword"
+              nzPrefixIcon="lock"
+              nzSize="large"
+            >
+              <input
+                [type]="isShowPassword ? 'text' : 'password'"
+                formControlName="password"
+                nz-input
+                placeholder="Mật khẩu"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <ng-template #iconPassword>
+          <nz-icon
+            (click)="isShowPassword = !isShowPassword"
+            [nzType]="isShowPassword ? 'eye-invisible' : 'eye'"
+            nzTheme="outline"
+            style="cursor: pointer"
+          />
+        </ng-template>
+      </div>
+      <div class="mb-4">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Không được để trống!">
+            <nz-input-group
+              [nzSuffix]="iconPassword"
+              nzPrefixIcon="lock"
+              nzSize="large"
+            >
+              <input
+                [type]="isShowPassword ? 'text' : 'password'"
+                formControlName="confirmPassword"
+                nz-input
+                placeholder="Nhập lại mật khẩu"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <ng-template #iconPassword>
+          <nz-icon
+            (click)="isShowPassword = !isShowPassword"
+            [nzType]="isShowPassword ? 'eye-invisible' : 'eye'"
+            nzTheme="outline"
+            style="cursor: pointer"
+          />
+        </ng-template>
+      </div>
+
+      <div class="mb-4">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Họ và Tên không được để trống!">
+            <nz-input-group nzPrefixIcon="user" nzSize="large">
+              <input
+                formControlName="fullName"
+                nz-input
+                placeholder="Họ và Tên"
+                type="text"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="mb-4">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Số điện thoại không được để trống!">
+            <nz-input-group nzPrefixIcon="phone" nzSize="large">
+              <input
+                formControlName="phoneNumber"
+                nz-input
+                placeholder="Số điện thoại"
+                type="text"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div>
+        <nz-flex [nzVertical]="true" class="mt-2" nzAlign="center">
+          <button class="btn btn-secondary mb-4" type="submit">Đăng ký</button>
+          <span
+            >Bạn đã có tài khoản? <a routerLink="/dang-nhap">Đăng nhập</a></span
+          >
+        </nz-flex>
+      </div>
+    </form>
+  </div>
+</div>

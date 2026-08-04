@@ -1,0 +1,84 @@
+<div class="breadcrumb-area">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="breadcrumb-wrap">
+          <nav aria-label="breadcrumb">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Tất cả sản phẩm
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="section-title">
+    <h3>Thương hiệu</h3>
+  </div>
+  <div class="row text-center gx-2 gy-2">
+    <div class="col-auto brand-item" *ngFor="let brand of brands">
+      <div class="border rounded px-3 py-2 bg-white shadow-sm brand-box">
+        <img
+          [src]="brand.image"
+          alt="{{ brand.displayName }}"
+          style="height: 40px; max-width: 100px"
+        />
+        <div class="mt-1 fw-medium">{{ brand.displayName }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-list-area pt-5 pb-60">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-title">
+          <h3>Danh sách sản phẩm</h3>
+        </div>
+
+        <div class="product-list-top mb-30">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6">
+              <p>
+                Hiển thị {{ (currentPage - 1) * pageSize + 1 }} -
+                {{
+                  currentPage * pageSize > totalProducts
+                    ? totalProducts
+                    : currentPage * pageSize
+                }}
+                trong {{ totalProducts }} sản phẩm
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div id="grid" class="tab-pane fade show active">
+          <div [nzGutter]="[10, 10]" nz-row>
+            <div *ngFor="let product of products" nz-col nzSpan="4-8">
+              <app-product-template [product]="product"></app-product-template>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination-area mt-30">
+        <nz-pagination
+          [nzPageIndex]="currentPage"
+          [nzTotal]="totalProducts"
+          [nzPageSize]="pageSize"
+          (nzPageIndexChange)="pageChange($event)"
+        >
+        </nz-pagination>
+      </div>
+    </div>
+  </div>
+</div>

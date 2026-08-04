@@ -1,0 +1,148 @@
+<div class="container pt-35">
+  <div class="box-breadcrumb">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a routerLink="/">Trang chủ</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+        Tìm kiếm cho: {{ filter.keySearch }}
+      </nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+  <div class="main-wrapper pt-35">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="shop-sidebar-inner mb-30 ps-2 px-2">
+          <div class="single-sidebar mb-45">
+            <div class="sidebar-inner-title mb-25">
+              <h3>Lọc theo giá</h3>
+            </div>
+            <div class="sidebar-content-box">
+              <nz-slider
+                nzRange
+                [(ngModel)]="price"
+                [nzMax]="50000000"
+                (nzOnAfterChange)="onPriceRangeChange()"
+                [nzTipFormatter]="priceTitleTemplate"
+              >
+              </nz-slider>
+
+              <nz-flex [nzGap]="10">
+                <input
+                  nz-input
+                  currencyMask="vnđ"
+                  [(ngModel)]="filter.priceFrom"
+                  (ngModelChange)="onPriceChange(0, $event)"
+                />
+
+                <input
+                  nz-input
+                  currencyMask="vnđ"
+                  [(ngModel)]="filter.priceTo"
+                  (ngModelChange)="onPriceChange(1, $event)"
+                />
+              </nz-flex>
+
+              <ng-template #priceTitleTemplate let-value>
+                {{ value | number: "1.0-0" }} VNĐ
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <!-- sidebar promote picture start -->
+        <div class="single-sidebar mb-30">
+          <div class="sidebar-thumb">
+            <a href="#"
+              ><img alt="" src="assets/img/banner/img-static-sidebar.jpg"
+            /></a>
+          </div>
+        </div>
+        <!-- sidebar promote picture end -->
+      </div>
+      <div class="col-lg-9 order-first order-lg-last">
+        <div class="product-shop-main-wrapper mb-50">
+          <div class="shop-baner-img mb-70">
+            <a href="#"
+              ><img alt="" src="assets/img/banner/category-image.jpg"
+            /></a>
+          </div>
+          <div class="shop-top-bar mb-30">
+            <div [nzGap]="10" nz-flex nzJustify="space-between">
+              <div>
+                <div>
+                  <div class="">
+                    <nz-form-item>
+                      <nz-form-label>Sắp xếp theo</nz-form-label>
+                      <nz-form-control>
+                        <nz-select
+                          [(ngModel)]="filter.orderBy"
+                          (ngModelChange)="changeSort($event)"
+                        >
+                          <nz-option nzLabel="Sản phẩm mới nhất" nzValue="">
+                          </nz-option>
+
+                          <nz-option
+                            nzLabel="Giá thấp đến cao"
+                            nzValue="price-asc"
+                          >
+                          </nz-option>
+
+                          <nz-option
+                            nzLabel="Giá cao đến thấp"
+                            nzValue="price-desc"
+                          >
+                          </nz-option>
+                        </nz-select>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              *ngIf="products.length > 0"
+              [nzGutter]="[16, 16]"
+              class="list"
+              nz-row
+            >
+              <div
+                *ngFor="let product of products"
+                [nzLg]="24 / columnNum"
+                [nzMd]="columnNum != 1 ? 8 : 24"
+                [nzSm]="columnNum != 1 ? 12 : 24"
+                class="w-100"
+                nz-col
+              >
+                <app-product-template
+                  (afterUpdateWishlist)="getData()"
+                  [product]="product"
+                  [type]="columnNum == 1 ? 'horizontal' : 'vertical'"
+                ></app-product-template>
+              </div>
+            </div>
+            <nz-empty
+              *ngIf="products.length == 0"
+              [nzNotFoundContent]="null"
+            ></nz-empty>
+            <div
+              *ngIf="products.length > 0"
+              class="filter-more text-center mt-4"
+            >
+              <button
+                (click)="showMore()"
+                [nzLoading]="nzLoading"
+                nz-button
+                nzShape="round"
+                nzType="primary"
+                style="background-color: #cf131f; border-color: #cf131f"
+                type="button"
+              >
+                Xem thêm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
